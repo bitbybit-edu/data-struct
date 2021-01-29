@@ -63,6 +63,14 @@ void initGraphArray(GraphArray *graphArray)
     graphArray->edge[0][1] = 1;
 }
 
+/**
+ * 深度优先遍历
+ */
+void depthPriorityTraverse(GraphArray graphArray, int start)
+{
+    int hasTraversedVertex[graphArray.vertexNum];
+}
+
 int main()
 {
     GraphArray graphArray;
@@ -72,4 +80,6 @@ int main()
 
     // 打印邻接矩阵
     printGraphArray(graphArray);
+
+    depthPriorityTraverse(graphArray);
 }
