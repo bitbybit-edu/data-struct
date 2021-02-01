@@ -61,15 +61,65 @@ void initGraphArray(GraphArray *graphArray)
     }
 
     graphArray->edge[0][1] = 1;
+    graphArray->edge[0][5] = 1;
+
+    graphArray->edge[1][2] = 1;
+    graphArray->edge[1][8] = 1;
+    graphArray->edge[1][6] = 1;
+
+    graphArray->edge[2][3] = 1;
+    graphArray->edge[2][8] = 1;
+
+    graphArray->edge[3][4] = 1;
+    graphArray->edge[3][7] = 1;
+    graphArray->edge[3][6] = 1;
+    graphArray->edge[3][8] = 1;
+
+    graphArray->edge[4][5] = 1;
+    graphArray->edge[4][7] = 1;
+
+    graphArray->edge[5][6] = 1;
+
+    graphArray->edge[6][7] = 1;
+}
+
+int hasTraversedVertex[MAX_VERTEX_NUM];
+
+void depthFirstSearch(GraphArray graphArray, int start) 
+{
+    if (hasTraversedVertex[start] == 0)
+    {
+        hasTraversedVertex[start] = 1;
+        printf("%c ",graphArray.vertex[start]);
+        for (size_t i = 0; i < graphArray.edgeNum; i++)
+        {
+            if (graphArray.edge[start][i] == 1 && hasTraversedVertex[i] == 0)
+            {
+                depthFirstSearch(graphArray, i);
+            }
+            
+        }
+        
+    }
 }
 
 /**
  * 深度优先遍历
  */
-void depthPriorityTraverse(GraphArray graphArray, int start)
+void depthPriorityTraverse(GraphArray graphArray)
 {
-    int hasTraversedVertex[graphArray.vertexNum];
+    
+    // 初始都未访问过
+    for (size_t i = 0; i < graphArray.vertexNum; i++)
+    {
+        hasTraversedVertex[i] = 0;
+    }
+
+    int start = 8;
+    depthFirstSearch(graphArray, start);
 }
+
+
 
 int main()
 {
@@ -81,5 +131,6 @@ int main()
     // 打印邻接矩阵
     printGraphArray(graphArray);
 
+    // 深度优先遍历
     depthPriorityTraverse(graphArray);
 }
