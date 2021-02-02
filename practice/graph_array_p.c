@@ -3,7 +3,7 @@
 // 顶点数量
 #define MAX_VERTEX_NUM 9
 
-typedef struct
+typedef struct GraphArray
 {
     // 顶点表
     char vertex[MAX_VERTEX_NUM];
@@ -133,4 +133,6 @@ int main()
 
     // 深度优先遍历
     depthPriorityTraverse(graphArray);
+
+
 }
