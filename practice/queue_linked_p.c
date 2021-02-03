@@ -3,29 +3,29 @@
 
 typedef char QData;
 
-typedef struct
+struct Node
 {
     QData data;
     struct Node *next;
-} Node;
+};
 
 typedef struct QueueLinked
 {
     // 队头
-    Node *front;
+    struct Node *front;
     // 队尾
-    Node *rear;
+    struct Node *rear;
 } QueueLinked;
 
 void init(QueueLinked *queue)
 {
-    queue->front = queue->rear = malloc(sizeof(Node));
+    queue->front = queue->rear = malloc(sizeof(struct Node));
     queue->front->next = NULL;
 }
 
 void enQueue(QueueLinked *queue, QData data)
 {
-    Node *node = malloc(sizeof(Node));
+    struct Node *node = malloc(sizeof(struct Node));
     node->data = data;
     node->next = NULL;
     queue->rear->next = node;
@@ -34,7 +34,7 @@ void enQueue(QueueLinked *queue, QData data)
 
 void printQueue(QueueLinked queue)
 {
-    Node *node = queue.front->next;
+    struct Node *node = queue.front->next;
     while (node != NULL)
     {
         printf("%c --->", node->data);
@@ -50,7 +50,7 @@ QData deQueue(QueueLinked *queue)
         return NULL;
     }
 
-    Node *head = queue->front->next;
+    struct Node *head = queue->front->next;
     QData nodeData = head->data;
     queue->front->next = head->next;
     if (queue->rear == head)
